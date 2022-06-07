@@ -1,11 +1,7 @@
 //import styled from "styled-components";
-import type { Post } from "../pages/blog/fetch";
+import type { Post } from "../modules/Post";
 
-interface PropsWPost {
-  post: Post;
-}
-
-const PostElement = ({ post }: PropsWPost) => {
+const PostElement = ({ post }: { post: Post }) => {
   return (
     <div>
       <h2>{post.title}</h2>
