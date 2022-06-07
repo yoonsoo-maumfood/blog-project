@@ -21,3 +21,5 @@ MDN 문서를 위주로 보는게 좋음
 
 ## 기록
 ### 유용했던 reference 기록
+nextjs에서 styled-components 설정하는 법
+https://velog.io/@hwang-eunji/Styled-components-nextjs에서-className-오류
