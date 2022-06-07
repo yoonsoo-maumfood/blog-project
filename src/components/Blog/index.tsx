@@ -1,5 +1,7 @@
-import { Post as PostComponent } from "./Post";
+import Link from "next/link";
 import { Post, DataStatus } from "../../modules/Post";
+import { Post as PostComponent } from "./Post";
+
 import {
   BlogContainer,
   HeaderContainer,
@@ -38,8 +40,16 @@ export default function Blog({
       <HeaderContainer>
         <Title>{header}</Title>
         <LinkContainer>
-          <LinkStyled href={`/blog/${otherTwo[0].toLowerCase()}`}>{otherTwo[0]}</LinkStyled>
-          <LinkStyled href={`/blog/${otherTwo[1].toLowerCase()}`}>{otherTwo[1]}</LinkStyled>
+          <LinkStyled>
+            <Link href={`/blog/${otherTwo[0].toLowerCase()}`}>
+              {otherTwo[0]}
+            </Link>
+          </LinkStyled>
+          <LinkStyled>
+            <Link href={`/blog/${otherTwo[1].toLowerCase()}`}>
+              {otherTwo[1]}
+            </Link>
+          </LinkStyled>
         </LinkContainer>
       </HeaderContainer>
       <Body>

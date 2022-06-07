@@ -3,6 +3,7 @@ import type { Post } from "../../../modules/Post";
 import { Comment } from "./Comment";
 import {
   PostContainer,
+  PostContentContainer,
   Header,
   Title,
   UserID,
@@ -13,11 +14,13 @@ import {
 const PostComponent = ({ post }: { post: Post }) => {
   return (
     <PostContainer>
-      <Header>
-        <Title>{post.title}</Title>
-        <UserID>{post.userId}</UserID>
-      </Header>
-      <Content>{post.body}</Content>
+      <PostContentContainer>
+        <Header>
+          <Title>{post.title}</Title>
+          <UserID>{post.userId}</UserID>
+        </Header>
+        <Content>{post.body}</Content>
+      </PostContentContainer>
       <CommentBox>
         {post.comments.map((comment) => (
           <Comment key={comment.id} comment={comment} />
