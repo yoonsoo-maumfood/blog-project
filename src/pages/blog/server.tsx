@@ -1,35 +1,29 @@
-import axios from "axios";
+import { Post, DataStatus } from '../../modules/Post';
+import { getPosts } from "../../modules/Post/axios";
+import Blog from '../../components/Blog';
 
-interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
-
-interface PropsWPosts {
-  posts: Post[];
-}
-
-const Server = ( { posts }: PropsWPosts  ) => {
+const Server = ( { posts, status }: { posts: Post[], status: DataStatus}  ) => {
   return (
     <div>
-    <h1>Server</h1>
-    {posts.map((post) => (
-      <div key={post.id}>
-        <h2>{post.title}</h2>
-        <p>{post.body}</p>
-      </div>
-    ))}
-
+      <Blog header="Server" posts={posts} status={status} />
     </div>
   )
 }
 
 export async function getStaticProps() {
+  let posts;
+  let status: DataStatus = DataStatus.Processing;
+
+  await getPosts(
+    "https://jsonplaceholder.typicode.com/posts",
+    "https://jsonplaceholder.typicode.com/comments",
+    ( value: Post[] ) => ( posts = value ),
+    ( value: DataStatus ) => ( status = value ),
+  );
   return {
     props: {
-      posts: (await axios.get("https://jsonplaceholder.typicode.com/posts")).data,
+      posts: JSON.parse(JSON.stringify(posts)),
+      status: status,
     }
   }
 }
