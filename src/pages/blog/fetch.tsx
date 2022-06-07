@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PostElement from '../../components/Post';
 
 enum FetchStatus {
   Done,
@@ -10,7 +11,7 @@ interface FetchPosts {
   posts: Post[];
   status: FetchStatus;
 }
-interface Post {
+export interface Post {
   userId: number;
   id: number;
   title: string;
@@ -85,17 +86,7 @@ const Fetch = () => {
       <h1>Fetch</h1>
       {fetchPosts.status === FetchStatus.Done ? ( //Done 일때,,
         posts.map((post) => (
-          <div key={post.id}>
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
-            <div>
-              <ul>
-                {post.comments.map((comment) => (
-                  <li key={comment.id}>{comment.body}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <PostElement post={post} key={post.id}/>
         ))
       ) : fetchPosts.status === FetchStatus.Processing ? ( //Processing일때,
         <h2>로딩중</h2>
