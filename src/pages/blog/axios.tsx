@@ -1,33 +1,25 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 
-interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
+import { Post, DataStatus } from "../../modules/Post";
+import { getPosts } from "../../modules/Post/axios";
+import Blog from '../../components/Blog';
 
 const Axios = () => {
-  const [posts, setPosts] = useState(Array<Post>());
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [status, setStatus] = useState<DataStatus>(DataStatus.Processing);
 
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => {
-        setPosts( response.data );
-      });
+    getPosts(
+      "https://jsonplaceholder.typicode.com/posts",
+      "https://jsonplaceholder.typicode.com/comments",
+      setPosts,
+      setStatus
+    );
   }, []);
 
   return (
     <div>
-      <h1>Axios</h1>
-      {posts.map((post) => (
-        <div key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
-        </div>
-      ))}
+      <Blog header="Axios" posts={posts} status={status} />
     </div>
   );
 };
