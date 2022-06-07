@@ -1,7 +1,7 @@
 //import styled from "styled-components";
-import type { Post } from "../modules/Post";
+import type { Post } from "../../modules/Post";
 
-const PostElement = ({ post }: { post: Post }) => {
+const PostComponent = ({ post }: { post: Post }) => {
   return (
     <div>
       <h2>{post.title}</h2>
@@ -17,4 +17,4 @@ const PostElement = ({ post }: { post: Post }) => {
   );
 };
 
-export default PostElement;
+export { PostComponent as Post }; //이름의 일관성을 위하여
