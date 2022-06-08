@@ -5,6 +5,7 @@ export const PostContainer = styled.div`
   border-radius: 10px;
   margin-bottom: 35px;
   display: flex;
+  opacity: ${ props => props.hidden ? 0 : 1};
   max-height: 15rem;
   max-width: 80%;
   height: auto;

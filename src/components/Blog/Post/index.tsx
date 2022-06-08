@@ -1,4 +1,4 @@
-//import styled from "styled-components";
+import { useEffect, useState } from 'react';
 import type { Post } from "../../../modules/Post";
 import { Comment } from "./Comment";
 import {
@@ -11,9 +11,19 @@ import {
   CommentBox,
 } from "./styles";
 
-const PostComponent = ({ post }: { post: Post }) => {
+const INTERVAL = 300;
+
+const PostComponent = ({ post, sequence }: { post: Post, sequence: number }) => {
+  const [hidden, setHidden] = useState(true);
+
+  useEffect( () => {
+    setTimeout( () => {
+      setHidden(false);
+    }, INTERVAL * sequence)
+  }, [sequence]);
+
   return (
-    <PostContainer>
+    <PostContainer hidden={hidden}>
       <PostContentContainer>
         <Header>
           <Title>{post.title}</Title>

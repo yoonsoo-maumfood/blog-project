@@ -31,12 +31,12 @@ export default function Blog({
       <HeaderContainer>
         <Title>{header}</Title>
         <LinkContainer>
-          <LinkStyled>
+          <LinkStyled align="left">
             <Link href={`/blog/${otherTwo[0].toLowerCase()}`}>
               {otherTwo[0]}
             </Link>
           </LinkStyled>
-          <LinkStyled>
+          <LinkStyled align="right">
             <Link href={`/blog/${otherTwo[1].toLowerCase()}`}>
               {otherTwo[1]}
             </Link>
@@ -46,8 +46,8 @@ export default function Blog({
       <Body>
         {status === DataStatus.Done ? ( //Done 일때,,
           <PostContainer>
-            {posts.map((post) => (
-              <PostComponent post={post} key={post.id} />
+            {posts.map((post, index) => (
+              <PostComponent post={post} sequence={index} key={post.id} />
             ))}
           </PostContainer>
         ) : status === DataStatus.Processing ? ( //Processing일때,

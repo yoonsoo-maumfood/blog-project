@@ -38,20 +38,20 @@ export const LinkContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 7em;
+  width: 10em;
   margin-right: 3rem;
 `;
 
-export const LinkStyled = styled.div`
+export const LinkStyled = styled.div<{align: string}>`
   margin-right: 15px;
   font-size: 1.2rem;
-  text-align: center;
-  width: 8rem;
-  height: 3rem;
+  text-align: ${props => props.align};
+  width: 5rem;
   cursor: pointer;
 
   &:hover {
     color: gray;
+    font-size: 2rem;
   }
   @media screen {
     transition: ${transitionTime};

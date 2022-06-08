@@ -13,6 +13,8 @@ export const CommentContainer = styled.div`
 
   &:hover {
     box-shadow: 0 1px 5px gray;
+    color: orange;
+    border: thin solid orange;
   }
   @media screen {
     transition: 0.5s;
