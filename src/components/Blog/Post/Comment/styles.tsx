@@ -23,9 +23,10 @@ export const CommentContainer = styled.div`
 
 export const HeaderContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.9rem;
 `;
 
 export const Title = styled.div`

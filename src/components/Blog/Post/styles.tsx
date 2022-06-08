@@ -5,6 +5,7 @@ export const PostContainer = styled.div`
   border-radius: 10px;
   margin-bottom: 35px;
   display: flex;
+  flex-direction: row;
   opacity: ${ props => props.hidden ? 0 : 1};
   max-height: 15rem;
   max-width: 80%;
@@ -20,12 +21,19 @@ export const PostContainer = styled.div`
   @media screen {
     transition: 0.5s;
   }
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const PostContentContainer = styled.div`
   width: 50%;
   padding: 0 10px;
 
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    padding-bottom: 20px;
+  }
 `;
 
 export const Header = styled.div`
@@ -52,4 +60,8 @@ export const Content = styled.div`
 export const CommentBox = styled.div`
   width: 50%;
   padding: 0 10px;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 `;
