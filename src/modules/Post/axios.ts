@@ -4,24 +4,26 @@ import { Post, DataStatus } from './index';
 const getPosts = async (
   postsUrl: string,
   commentsUrl: string,
-  setPosts: Function,
-  setStatus: Function,
-) => {
+): Promise<{posts: Post[], status: DataStatus}> => {
   try {
-    setStatus(DataStatus.Processing);
     const newPosts: Post[] = [];
-    for ( const post of (await axios.get(postsUrl)).data ) {
+    const responsePosts = await axios.get(postsUrl)
+    const rawPosts = responsePosts.data;
+    for ( const post of rawPosts ) {
       newPosts.push(new Post(post));
     }
-    for ( const comment of (await axios.get(commentsUrl)).data ) {
+
+    const responseComments = await axios.get(commentsUrl);
+    const comments = responseComments.data;
+
+    for ( const comment of comments ) {
       newPosts[comment.postId - 1].comments.push(comment);
     }
 
-    setPosts(newPosts);
-    setStatus(DataStatus.Done);
+    return Promise.resolve({ posts: newPosts, status: DataStatus.Done});
   } catch(e) {
-    console.log(e)
-    setStatus(DataStatus.Failed);
+    console.log(e);
+    return Promise.reject({ posts: [], status: DataStatus.Failed});
   }
 }
 

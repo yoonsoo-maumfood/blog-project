@@ -9,12 +9,14 @@ const Axios = () => {
   const [status, setStatus] = useState<DataStatus>(DataStatus.Processing);
 
   useEffect(() => {
+    setStatus(DataStatus.Processing);
     getPosts(
       "https://jsonplaceholder.typicode.com/posts",
       "https://jsonplaceholder.typicode.com/comments",
-      setPosts,
-      setStatus
-    );
+    ).then( ({ posts, status}) => {
+      setPosts(posts);
+      setStatus(status);
+    });
   }, []);
 
   return (

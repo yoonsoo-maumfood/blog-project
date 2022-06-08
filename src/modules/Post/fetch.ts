@@ -3,33 +3,33 @@ import { Post, DataStatus } from './index';
 const getPosts = async (
   postsUrl: string,
   commentsUrl: string,
-  setPosts: Function,
-  setStatus: Function,
-) => {
+): Promise<{posts: Post[], status: DataStatus}> => {
   try {
-    setStatus(DataStatus.Processing)
     const newPosts: Post[] = [];
-    const fetchPosts = await fetch(postsUrl);
-    if (!fetchPosts.ok) {
+    const responsePosts = await fetch(postsUrl);
+    if (!responsePosts.ok) {
       throw new Error("fetchPosts Failed");
     }
-    for (const post of await fetchPosts.json()) {
+    const rawPosts = await responsePosts.json();
+
+    for (const post of rawPosts) {
       newPosts.push(new Post(post)); //comment[]가 자동으로 생성되도록
     }
 
-    const fetchComments = await fetch(commentsUrl);
-    if (!fetchComments.ok) {
+    const responseComments = await fetch(commentsUrl);
+    if (!responseComments.ok) {
       throw new Error("fetchComments Failed");
     }
-    for (const comment of await fetchComments.json()) {
+    const comments = await responseComments.json();
+    for (const comment of comments) {
       newPosts[comment.postId - 1].comments.push(comment);
     }
 
-    setPosts(newPosts);
-    setStatus(DataStatus.Done);
+    return { posts: newPosts, status: DataStatus.Done };
+
   } catch(e) {
     console.log(e);
-    setStatus(DataStatus.Failed);
+    return { posts: [], status: DataStatus.Failed };
   }
 }
 

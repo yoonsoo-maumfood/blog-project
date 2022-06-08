@@ -11,14 +11,10 @@ const Server = ( { posts, status }: { posts: Post[], status: DataStatus}  ) => {
 }
 
 export async function getStaticProps() {
-  let posts;
-  let status: DataStatus = DataStatus.Processing;
-
-  await getPosts(
+  //static page에서 processing이 rendering되는 경우는 없으므로 신경쓸 필요가 없음.
+  const { posts, status } = await getPosts(
     "https://jsonplaceholder.typicode.com/posts",
     "https://jsonplaceholder.typicode.com/comments",
-    ( value: Post[] ) => ( posts = value ),
-    ( value: DataStatus ) => ( status = value ),
   );
   return {
     props: {
