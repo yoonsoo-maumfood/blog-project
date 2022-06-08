@@ -23,18 +23,9 @@ export default function Blog({
   posts: Post[];
   status: DataStatus;
 }) {
-  let otherTwo = Array<string>();
-  switch (header) {
-    case "Server":
-      otherTwo = ["Axios", "Fetch"];
-      break;
-    case "Axios":
-      otherTwo = ["Server", "Fetch"];
-      break;
-    case "Fetch":
-      otherTwo = ["Server", "Axios"];
-      break;
-  }
+  let otherTwo = ["Axios", "Server", "Fetch"];
+  otherTwo.splice( otherTwo.indexOf(header), 1);
+  
   return (
     <BlogContainer>
       <HeaderContainer>
