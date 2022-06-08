@@ -51,7 +51,7 @@ export const LinkStyled = styled.div<{align: string}>`
 
   &:hover {
     color: gray;
-    font-size: 2rem;
+    transform: scale(1.9, 1.9);
   }
   @media screen {
     transition: ${transitionTime};
