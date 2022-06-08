@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const transitionTime = '0.3s';
+const transitionTime = "0.3s";
 
 export const BlogContainer = styled.div`
   position: absolute;
@@ -61,6 +61,8 @@ export const LinkStyled = styled.div`
 export const Body = styled.div`
   margin-top: 3.5rem;
   background-color: #f2f2f2;
+  min-width: 100%;
+  min-height: 100%;
 `;
 
 export const PostContainer = styled.div`
@@ -72,7 +74,20 @@ export const PostContainer = styled.div`
 `;
 
 export const Processing = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  top: 50px;
+  width: 100%;
+  font-size: 3rem;
 `;
 
 export const Failed = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  top: 50px;
+  width: 100%;
+  font-size: 3rem;
+  color: purple;
 `;
